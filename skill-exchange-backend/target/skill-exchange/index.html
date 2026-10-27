@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Skill Exchange</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #11161b;
+            color: #f2ecdd;
+            margin: 0;
+        }
+
+        .wrap {
+            max-width: 900px;
+            margin: auto;
+            padding: 35px 20px;
+        }
+
+        .nav {
+            margin-bottom: 25px;
+        }
+
+        .nav a {
+            color: #f0c878;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #f0c878;
+        }
+
+        .card {
+            background: #1d252d;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 11px;
+            margin: 7px 0 14px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid #555;
+            background: #10151a;
+            color: #fff;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 12px 18px;
+            border: 0;
+            border-radius: 6px;
+            background: #e9ac3f;
+            color: #11161b;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            font-size: 24px;
+            color: #f0c878;
+        }
+
+        .small {
+            color: #aab2bd;
+        }
+
+        .success {
+            color: #72d572;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #ff7777;
+            font-weight: bold;
+        }
+
+        .dashboard-button {
+            display: inline-block;
+            padding: 12px 18px;
+            background: #e9ac3f;
+            color: #11161b;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="wrap">
+
+    <!-- Navigation -->
+
+    <div class="nav">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="design.html">
+            Project Design
+        </a>
+
+    </div>
+
+
+    <!-- Main Heading -->
+
+    <h1>
+        AI-Powered Skill Exchange
+    </h1>
+
+    <p class="small">
+        Intercollegiate Skill Exchange and Matchmaking Platform
+        using Java + MySQL + Deep Learning.
+    </p>
+
+
+    <!-- ================= REGISTER ================= -->
+
+    <div class="card">
+
+        <h2>
+            Register Student
+        </h2>
+
+        <form id="reg">
+
+            <label>
+                Full Name
+            </label>
+
+            <input
+                name="name"
+                type="text"
+                placeholder="Full name"
+                required
+            >
+
+
+            <label>
+                Email
+            </label>
+
+            <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                required
+            >
+
+
+            <label>
+                Password
+            </label>
+
+            <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                required
+            >
+
+
+            <label>
+                Campus
+            </label>
+
+            <select name="campus">
+
+                <option value="NORTHRIDGE">
+                    NORTHRIDGE
+                </option>
+
+                <option value="LAKESIDE">
+                    LAKESIDE
+                </option>
+
+                <option value="HARBORVIEW">
+                    HARBORVIEW
+                </option>
+
+                <option value="SUMMIT">
+                    SUMMIT
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                Register
+            </button>
+
+        </form>
+
+
+        <p id="regOut"
+           class="small">
+        </p>
+
+    </div>
+
+
+    <!-- ================= LOGIN ================= -->
+
+    <div class="card">
+
+        <h2>
+            Student Login
+        </h2>
+
+
+        <form id="loginForm">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <label>
+                Password
+            </label>
+
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Enter your password"
+                required
+            >
+
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+
+        <p id="loginOut"
+           class="small">
+        </p>
+
+    </div>
+
+
+    <!-- ================= DASHBOARD LINK ================= -->
+
+    <div class="card">
+
+        <h2>
+            Student Dashboard
+        </h2>
+
+        <p class="small">
+            After successful login, you will automatically
+            be redirected to your dashboard.
+        </p>
+
+        <a href="dashboard.html"
+           class="dashboard-button">
+
+            Open Dashboard
+
+        </a>
+
+    </div>
+
+
+    <!-- ================= AI MATCH ================= -->
+
+    <div class="card">
+
+        <h2>
+            Deep Learning Match Demo
+        </h2>
+
+
+        <label>
+            Student A — wants to learn
+        </label>
+
+        <textarea id="a">I want to learn Python and machine learning</textarea>
+
+
+        <label>
+            Student B — skills offered
+        </label>
+
+        <textarea id="b">I teach Python, machine learning and deep learning</textarea>
+
+
+        <button id="match"
+                type="button">
+
+            Calculate AI Match
+
+        </button>
+
+
+        <div id="out">
+        </div>
+
+    </div>
+
+
+    <!-- ================= SYSTEM INFORMATION ================= -->
+
+    <div class="card">
+
+        <h2>
+            How the final system works
+        </h2>
+
+        <p>
+            Browser → Java Servlet → Python AI →
+            Sentence-BERT → cosine similarity →
+            Java response → browser.
+        </p>
+
+        <p class="small">
+            The Java backend also exposes
+            GET /api/matches?userId=...
+            and enriches traditional matches with
+            an AI semantic score when the Python
+            service is running.
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+     * ============================================================
+     * REGISTRATION
+     * ============================================================
+     */
+
+    const registerForm =
+        document.getElementById("reg");
+
+
+    registerForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const output =
+                document.getElementById("regOut");
+
+
+            output.textContent =
+                "Creating account...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "api/register",
+                        {
+                            method: "POST",
+
+                            body:
+                                new URLSearchParams(
+                                    new FormData(registerForm)
+                                )
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (response.ok) {
+
+                    output.className =
+                        "success";
+
+
+                    output.textContent =
+                        "Registered! User ID: "
+                        + data.id;
+
+
+                    /*
+                     * Clear registration form
+                     */
+
+                    registerForm.reset();
+
+                } else {
+
+                    output.className =
+                        "error";
+
+
+                    output.textContent =
+                        data.error ||
+                        "Registration failed";
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                output.className =
+                    "error";
+
+
+                output.textContent =
+                    "Unable to connect to server";
+
+            }
+
+        }
+    );
+
+
+    /*
+     * ============================================================
+     * LOGIN
+     * ============================================================
+     */
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const output =
+                document.getElementById("loginOut");
+
+
+            const email =
+                document.getElementById("loginEmail").value.trim();
+
+
+            const password =
+                document.getElementById("loginPassword").value;
+
+
+            if (!email || !password) {
+
+                output.className =
+                    "error";
+
+
+                output.textContent =
+                    "Email and password are required";
+
+
+                return;
+
+            }
+
+
+            output.className =
+                "small";
+
+
+            output.textContent =
+                "Logging in...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "api/login",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/x-www-form-urlencoded"
+                            },
+
+                            body:
+                                new URLSearchParams(
+                                    {
+                                        email: email,
+                                        password: password
+                                    }
+                                )
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (response.ok) {
+
+                    /*
+                     * Save logged-in user
+                     */
+
+                    localStorage.setItem(
+                        "userId",
+                        data.id
+                    );
+
+
+                    localStorage.setItem(
+                        "userName",
+                        data.name
+                    );
+
+
+                    localStorage.setItem(
+                        "userEmail",
+                        data.email
+                    );
+
+
+                    localStorage.setItem(
+                        "userCampus",
+                        data.campus
+                    );
+
+
+                    output.className =
+                        "success";
+
+
+                    output.textContent =
+                        "Login successful! Welcome, "
+                        + data.name
+                        + " (User ID: "
+                        + data.id
+                        + ")";
+
+
+                    /*
+                     * Redirect to dashboard
+                     */
+
+                    setTimeout(
+                        function () {
+
+                            window.location.href =
+                                "dashboard.html";
+
+                        },
+                        500
+                    );
+
+                } else {
+
+                    output.className =
+                        "error";
+
+
+                    output.textContent =
+                        data.error ||
+                        "Invalid email or password";
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                output.className =
+                    "error";
+
+
+                output.textContent =
+                    "Unable to connect to server";
+
+            }
+
+        }
+    );
+
+
+    /*
+     * ============================================================
+     * AI MATCH DEMO
+     * ============================================================
+     */
+
+    const matchButton =
+        document.getElementById("match");
+
+
+    matchButton.addEventListener(
+        "click",
+        async function () {
+
+            const studentA =
+                document.getElementById("a").value;
+
+
+            const studentB =
+                document.getElementById("b").value;
+
+
+            const output =
+                document.getElementById("out");
+
+
+            if (!studentA.trim() ||
+                !studentB.trim()) {
+
+                output.innerHTML =
+                    "<p class='error'>"
+                    + "Please enter both student descriptions."
+                    + "</p>";
+
+                return;
+
+            }
+
+
+            output.innerHTML =
+                "<p class='small'>"
+                + "Calculating AI match..."
+                + "</p>";
+
+
+            try {
+
+                const body =
+                    new URLSearchParams(
+                        {
+                            student1: studentA,
+                            student2: studentB
+                        }
+                    );
+
+
+                const response =
+                    await fetch(
+                        "api/ai-match",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/x-www-form-urlencoded"
+                            },
+
+                            body: body
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (response.ok) {
+
+                    const percentage =
+                        Number(
+                            data.matchPercentage
+                        ).toFixed(2);
+
+
+                    output.innerHTML =
+                        "<p class='result'>"
+                        + percentage
+                        + "% — "
+                        + data.recommendation
+                        + "</p>"
+                        + "<p class='small'>"
+                        + "Model: "
+                        + data.model
+                        + "</p>";
+
+                } else {
+
+                    output.innerHTML =
+                        "<p class='error'>"
+                        + (data.error ||
+                           "AI matching failed")
+                        + "</p>";
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                output.innerHTML =
+                    "<p class='error'>"
+                    + "Unable to connect to AI service."
+                    + "</p>";
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

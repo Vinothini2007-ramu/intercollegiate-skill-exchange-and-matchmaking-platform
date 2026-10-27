@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+```
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Dashboard - AI Skill Exchange</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #11161b;
+        color: #f2ecdd;
+        margin: 0;
+    }
+
+    .wrap {
+        max-width: 1100px;
+        margin: auto;
+        padding: 30px 20px;
+    }
+
+    .nav {
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .nav a {
+        color: #f0c878;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 38px;
+        margin-bottom: 5px;
+    }
+
+    h2 {
+        color: #f0c878;
+    }
+
+    .card {
+        background: #1d252d;
+        padding: 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .user-info {
+        background: #252f38;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+    }
+
+    .user-info p {
+        margin: 7px 0;
+    }
+
+    .small {
+        color: #aab2bd;
+    }
+
+    .success {
+        color: #72d572;
+        font-weight: bold;
+    }
+
+    .error {
+        color: #ff7777;
+        font-weight: bold;
+    }
+
+    .warning {
+        color: #f0c878;
+    }
+
+    button {
+        padding: 11px 18px;
+        border: 0;
+        border-radius: 6px;
+        background: #e9ac3f;
+        color: #11161b;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 8px;
+        margin-right: 8px;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .logout {
+        background: #555;
+        color: white;
+    }
+
+    .match-card {
+        background: #252f38;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 15px 0;
+        border-left: 4px solid #e9ac3f;
+    }
+
+    .match-name {
+        font-size: 22px;
+        color: #f0c878;
+        font-weight: bold;
+    }
+
+    .score {
+        font-size: 25px;
+        color: #72d572;
+        font-weight: bold;
+    }
+
+    .time-score {
+        color: #72d572;
+        font-weight: bold;
+    }
+
+    .skill-list {
+        color: #d5dbe1;
+        margin: 8px 0;
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 11px;
+        margin: 7px 0 14px;
+        border-radius: 6px;
+        border: 1px solid #555;
+        background: #10151a;
+        color: white;
+    }
+
+    input:focus,
+    select:focus {
+        outline: none;
+        border-color: #e9ac3f;
+    }
+
+    label {
+        display: block;
+        margin-top: 8px;
+    }
+
+    .session-card {
+        background: #252f38;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 15px 0;
+        border-left: 4px solid #72d572;
+    }
+
+    .session-title {
+        font-size: 21px;
+        color: #f0c878;
+        font-weight: bold;
+    }
+
+    .video-section {
+        margin-top: 18px;
+        padding: 16px;
+        background: #202a32;
+        border-radius: 8px;
+    }
+
+    .countdown {
+        color: #f0c878;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .video-button {
+        display: inline-block;
+        padding: 11px 18px;
+        background: #72d572;
+        color: #11161b;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-top: 8px;
+    }
+
+    .video-button:hover {
+        opacity: 0.9;
+    }
+
+    .empty {
+        color: #aab2bd;
+        padding: 15px 0;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .info-box {
+        background: #202a32;
+        padding: 12px;
+        border-radius: 6px;
+        margin: 10px 0;
+    }
+
+    .status-box {
+        padding: 14px;
+        border-radius: 8px;
+        background: #202a32;
+        margin-top: 15px;
+    }
+
+    .match-badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 20px;
+        background: #303b45;
+        color: #72d572;
+        font-weight: bold;
+        margin: 4px 4px 4px 0;
+    }
+
+    .section-description {
+        color: #aab2bd;
+        line-height: 1.6;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="wrap">
+
+```
+<!-- ================= NAVIGATION ================= -->
+
+<div class="nav">
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="design.html">
+        Project Design
+    </a>
+
+    <button class="logout" onclick="logout()">
+        Logout
+    </button>
+
+</div>
+
+
+<!-- ================= HEADER ================= -->
+
+<h1>
+    Student Dashboard
+</h1>
+
+<p class="small">
+    AI-Powered Intercollegiate Skill Exchange Platform
+</p>
+
+
+<!-- ================= USER PROFILE ================= -->
+
+<div class="card">
+
+    <h2>
+        My Profile
+    </h2>
+
+    <div class="user-info">
+
+        <p>
+            <strong>Name:</strong>
+            <span id="userName">Loading...</span>
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+            <span id="userEmail">Loading...</span>
+        </p>
+
+        <p>
+            <strong>Campus:</strong>
+            <span id="userCampus">Loading...</span>
+        </p>
+
+        <p>
+            <strong>User ID:</strong>
+            <span id="userId">Loading...</span>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MATCHING ================= -->
+
+<div class="card">
+
+    <h2>
+        AI Skill Matches
+    </h2>
+
+    <p class="section-description">
+        Find students from other campuses who can teach
+        the skills you want to learn. Matching considers
+        skills, availability and campus location.
+    </p>
+
+    <button id="findMatchesButton"
+            onclick="findMatches()">
+
+        Find My Matches
+
+    </button>
+
+    <div id="matchesOutput">
+
+        <p class="empty">
+            Click "Find My Matches" to search for suitable
+            skill exchange partners.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SESSION SCHEDULING ================= -->
+
+<div class="card hidden"
+     id="scheduleCard">
+
+    <h2>
+        Schedule Skill Exchange Session
+    </h2>
+
+    <p class="section-description">
+        Create a learning session with your selected
+        matched student and automatically generate a
+        secure video meeting room.
+    </p>
+
+
+    <div class="info-box">
+
+        <p>
+            <strong>Selected Mentor:</strong>
+            <span id="selectedMentor">-</span>
+        </p>
+
+        <p>
+            <strong>Mentor Email:</strong>
+            <span id="selectedMentorEmail">-</span>
+        </p>
+
+        <p>
+            <strong>Match ID:</strong>
+            <span id="selectedMatchId">-</span>
+        </p>
+
+    </div>
+
+
+    <form id="sessionForm">
+
+        <input type="hidden"
+               id="matchId">
+
+
+        <label>
+            Host Campus
+        </label>
+
+        <select id="hostCampus">
+
+            <option value="NORTHRIDGE">
+                NORTHRIDGE
+            </option>
+
+            <option value="LAKESIDE">
+                LAKESIDE
+            </option>
+
+            <option value="HARBORVIEW">
+                HARBORVIEW
+            </option>
+
+            <option value="SUMMIT">
+                SUMMIT
+            </option>
+
+        </select>
+
+
+        <label>
+            Session Date
+        </label>
+
+        <input type="date"
+               id="sessionDate"
+               required>
+
+
+        <label>
+            Session Time
+        </label>
+
+        <input type="time"
+               id="sessionTime"
+               required>
+
+
+        <label>
+            Room / Location
+        </label>
+
+        <input type="text"
+               id="sessionRoom"
+               placeholder="Example: Room 101">
+
+
+        <label>
+            Skill to be Taught
+        </label>
+
+        <input type="text"
+               id="skillTaught"
+               placeholder="Example: Java Programming"
+               required>
+
+
+        <button type="submit">
+
+            Create Session & Video Call
+
+        </button>
+
+    </form>
+
+
+    <div id="sessionOutput"
+         class="status-box">
+    </div>
+
+</div>
+
+
+<!-- ================= UPCOMING SESSIONS ================= -->
+
+<div class="card">
+
+    <h2>
+        My Upcoming Sessions
+    </h2>
+
+    <p class="section-description">
+        Your scheduled skill exchange sessions and
+        video meetings appear here.
+    </p>
+
+    <button onclick="loadSessions()">
+
+        Refresh Sessions
+
+    </button>
+
+    <div id="sessionsOutput">
+
+        <p class="empty">
+            Loading sessions...
+        </p>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<script>
+
+
+    /*
+     * ============================================================
+     * USER INFORMATION
+     * ============================================================
+     */
+
+    const userId =
+        localStorage.getItem("userId");
+
+    const userName =
+        localStorage.getItem("userName");
+
+    const userEmail =
+        localStorage.getItem("userEmail");
+
+    const userCampus =
+        localStorage.getItem("userCampus");
+
+
+    /*
+     * ============================================================
+     * CHECK LOGIN
+     * ============================================================
+     */
+
+    if (!userId) {
+
+        alert("Please login first.");
+
+        window.location.href =
+            "index.html";
+
+    }
+
+
+    /*
+     * ============================================================
+     * DISPLAY USER INFORMATION
+     * ============================================================
+     */
+
+    document.getElementById("userId").textContent =
+        userId || "-";
+
+    document.getElementById("userName").textContent =
+        userName || "-";
+
+    document.getElementById("userEmail").textContent =
+        userEmail || "-";
+
+    document.getElementById("userCampus").textContent =
+        userCampus || "-";
+
+
+    /*
+     * ============================================================
+     * SET DEFAULT HOST CAMPUS
+     * ============================================================
+     */
+
+    if (userCampus) {
+
+        const campusValue =
+            userCampus.toUpperCase();
+
+        const hostCampus =
+            document.getElementById("hostCampus");
+
+        const optionExists =
+            Array.from(hostCampus.options)
+                .some(function(option) {
+
+                    return option.value === campusValue;
+
+                });
+
+        if (optionExists) {
+
+            hostCampus.value =
+                campusValue;
+
+        }
+
+    }
+
+
+    /*
+     * ============================================================
+     * SET MINIMUM SESSION DATE
+     * ============================================================
+     */
+
+    function setMinimumDate() {
+
+        const today =
+            new Date();
+
+        const year =
+            today.getFullYear();
+
+        const month =
+            String(today.getMonth() + 1)
+                .padStart(2, "0");
+
+        const day =
+            String(today.getDate())
+                .padStart(2, "0");
+
+        document.getElementById("sessionDate").min =
+            year + "-" + month + "-" + day;
+
+    }
+
+    setMinimumDate();
+
+
+    /*
+     * ============================================================
+     * FIND MATCHES
+     * ============================================================
+     */
+
+    async function findMatches() {
+
+        const output =
+            document.getElementById("matchesOutput");
+
+        const button =
+            document.getElementById("findMatchesButton");
+
+
+        output.innerHTML =
+            "<p class='small'>Finding your best skill matches...</p>";
+
+        button.disabled = true;
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "api/matches?userId="
+                    + encodeURIComponent(userId)
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                output.innerHTML =
+                    "<p class='error'>"
+                    + escapeHtml(
+                        data.error ||
+                        "Unable to find matches"
+                    )
+                    + "</p>";
+
+                return;
+
+            }
+
+
+            if (!Array.isArray(data) ||
+                data.length === 0) {
+
+                output.innerHTML =
+                    "<p class='empty'>"
+                    + "No matching students found yet."
+                    + "</p>";
+
+                return;
+
+            }
+
+
+            output.innerHTML = "";
+
+
+            data.forEach(function(match) {
+
+                const card =
+                    document.createElement("div");
+
+                card.className =
+                    "match-card";
+
+
+                const aiScore =
+                    match.aiMatchPercent !== null &&
+                    match.aiMatchPercent !== undefined
+                        ? Number(match.aiMatchPercent).toFixed(2)
+                        : "N/A";
+
+
+                const traditionalScore =
+                    match.overallPercent !== null &&
+                    match.overallPercent !== undefined
+                        ? Number(match.overallPercent).toFixed(2)
+                        : "N/A";
+
+
+                const timeScore =
+                    match.timeScore !== null &&
+                    match.timeScore !== undefined
+                        ? Number(match.timeScore * 100).toFixed(0)
+                        : "N/A";
+
+
+                let matchedSkills =
+                    "No specific skills listed";
+
+
+                if (Array.isArray(match.matchedSkills) &&
+                    match.matchedSkills.length > 0) {
+
+                    matchedSkills =
+                        match.matchedSkills.join(", ");
+
+                }
+
+
+                let skillBadges = "";
+
+
+                if (Array.isArray(match.matchedSkills)) {
+
+                    match.matchedSkills.forEach(
+                        function(skill) {
+
+                            skillBadges +=
+                                "<span class='match-badge'>"
+                                + escapeHtml(skill)
+                                + "</span>";
+
+                        }
+                    );
+
+                }
+
+
+                card.innerHTML =
+
+                    "<div class='match-name'>"
+                    + escapeHtml(
+                        match.mentorName ||
+                        "Student"
+                    )
+                    + "</div>"
+
+
+                    + "<p>"
+                    + "<strong>Campus:</strong> "
+                    + escapeHtml(
+                        match.mentorCampus ||
+                        "Unknown"
+                    )
+                    + "</p>"
+
+
+                    + "<p>"
+                    + "<strong>Traditional Match:</strong> "
+                    + traditionalScore
+                    + "%</p>"
+
+
+                    + "<p class='score'>"
+                    + "Overall Match: "
+                    + traditionalScore
+                    + "%</p>"
+
+
+                    + "<p>"
+                    + "<strong>Time Compatibility:</strong> "
+                    + "<span class='time-score'>"
+                    + timeScore
+                    + "%"
+                    + "</span>"
+                    + "</p>"
+
+
+                    + "<p>"
+                    + "<strong>Matched Skills:</strong>"
+                    + "</p>"
+
+
+                    + "<div>"
+                    + skillBadges
+                    + "</div>"
+
+
+                    + "<p class='small'>"
+                    + escapeHtml(
+                        match.aiRecommendation ||
+                        "Recommended skill exchange partner"
+                    )
+                    + "</p>"
+
+
+                    + "<p class='small'>"
+                    + "<strong>Match ID:</strong> "
+                    + escapeHtml(
+                        match.matchId
+                    )
+                    + "</p>"
+
+
+                    + "<button type='button' "
+                    + "onclick='openSchedule("
+                    + JSON.stringify(match.matchId)
+                    + ", "
+                    + JSON.stringify(
+                        match.mentorName ||
+                        "Student"
+                    )
+                    + ", "
+                    + JSON.stringify(
+                        match.mentorCampus ||
+                        userCampus
+                    )
+                    + ", "
+                    + JSON.stringify(
+                        match.mentorEmail ||
+                        ""
+                    )
+                    + ")'>"
+                    + "Schedule Session"
+                    + "</button>";
+
+
+                output.appendChild(card);
+
+            });
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            output.innerHTML =
+                "<p class='error'>"
+                + "Unable to connect to the server."
+                + "</p>";
+
+        } finally {
+
+            button.disabled = false;
+
+        }
+
+    }
+
+
+    /*
+     * ============================================================
+     * OPEN SCHEDULE FORM
+     * ============================================================
+     */
+
+    function openSchedule(
+        matchId,
+        mentorName,
+        mentorCampus,
+        mentorEmail
+    ) {
+
+        document.getElementById("matchId").value =
+            matchId;
+
+
+        document.getElementById("selectedMentor").textContent =
+            mentorName
+            + " - "
+            + mentorCampus;
+
+
+        document.getElementById("selectedMentorEmail").textContent =
+            mentorEmail || "-";
+
+
+        document.getElementById("selectedMatchId").textContent =
+            matchId;
+
+
+        document.getElementById("scheduleCard")
+            .classList.remove("hidden");
+
+
+        document.getElementById("scheduleCard")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+
+    /*
+     * ============================================================
+     * CREATE SESSION
+     * ============================================================
+     */
+
+    document.getElementById("sessionForm")
+        .addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                const output =
+                    document.getElementById(
+                        "sessionOutput"
+                    );
+
+
+                const matchId =
+                    document.getElementById(
+                        "matchId"
+                    ).value;
+
+
+                const hostCampus =
+                    document.getElementById(
+                        "hostCampus"
+                    ).value;
+
+
+                const date =
+                    document.getElementById(
+                        "sessionDate"
+                    ).value;
+
+
+                const time =
+                    document.getElementById(
+                        "sessionTime"
+                    ).value;
+
+
+                const room =
+                    document.getElementById(
+                        "sessionRoom"
+                    ).value.trim();
+
+
+                const skillTaught =
+                    document.getElementById(
+                        "skillTaught"
+                    ).value.trim();
+
+
+                if (!matchId ||
+                    !hostCampus ||
+                    !date ||
+                    !time ||
+                    !skillTaught) {
+
+                    output.className =
+                        "status-box error";
+
+                    output.textContent =
+                        "Please fill all required fields.";
+
+                    return;
+
+                }
+
+
+                /*
+                 * Prevent past dates.
+                 */
+
+                const selectedDate =
+                    new Date(
+                        date + "T00:00:00"
+                    );
+
+                const currentDate =
+                    new Date();
+
+                currentDate.setHours(
+                    0,
+                    0,
+                    0,
+                    0
+                );
+
+
+                if (selectedDate < currentDate) {
+
+                    output.className =
+                        "status-box error";
+
+                    output.textContent =
+                        "Please select today or a future date.";
+
+                    return;
+
+                }
+
+
+                output.className =
+                    "status-box small";
+
+                output.textContent =
+                    "Creating session and video meeting...";
+
+
+                try {
+
+                    const body =
+                        new URLSearchParams({
+
+                            matchId: matchId,
+
+                            hostCampus: hostCampus,
+
+                            date: date,
+
+                            time: formatTimeForBackend(time),
+
+                            room: room,
+
+                            skillTaught: skillTaught
+
+                        });
+
+
+                    const response =
+                        await fetch(
+                            "api/session",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/x-www-form-urlencoded"
+                                },
+
+                                body: body
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        output.className =
+                            "status-box error";
+
+                        output.textContent =
+                            data.error ||
+                            "Unable to create session.";
+
+                        return;
+
+                    }
+
+
+                    output.className =
+                        "status-box success";
+
+
+                    output.innerHTML =
+                        "<strong>✓ Session created successfully!</strong>"
+                        + "<br><br>"
+                        + "Session ID: "
+                        + escapeHtml(data.sessionId)
+                        + "<br>"
+                        + "Date: "
+                        + escapeHtml(data.date)
+                        + "<br>"
+                        + "Time: "
+                        + escapeHtml(data.time)
+                        + "<br>"
+                        + "Room: "
+                        + escapeHtml(data.room || "-")
+                        + "<br>"
+                        + "Skill: "
+                        + escapeHtml(data.skillTaught)
+                        + "<br><br>";
+
+
+                    if (data.meetingLink) {
+
+                        const link =
+                            document.createElement("a");
+
+                        link.href =
+                            data.meetingLink;
+
+                        link.target =
+                            "_blank";
+
+                        link.rel =
+                            "noopener noreferrer";
+
+                        link.className =
+                            "video-button";
+
+                        link.textContent =
+                            "🎥 Join Video Call";
+
+                        output.appendChild(link);
+
+                    }
+
+
+                    /*
+                     * Refresh sessions.
+                     */
+
+                    loadSessions();
+
+
+                    /*
+                     * Clear form.
+                     */
+
+                    document.getElementById(
+                        "sessionDate"
+                    ).value = "";
+
+
+                    document.getElementById(
+                        "sessionTime"
+                    ).value = "";
+
+
+                    document.getElementById(
+                        "sessionRoom"
+                    ).value = "";
+
+
+                    document.getElementById(
+                        "skillTaught"
+                    ).value = "";
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    output.className =
+                        "status-box error";
+
+                    output.textContent =
+                        "Unable to connect to the server.";
+
+                }
+
+            }
+        );
+
+
+    /*
+     * ============================================================
+     * FORMAT TIME
+     * ============================================================
+     */
+
+    function formatTimeForBackend(time) {
+
+        if (!time) {
+            return "";
+        }
+
+        const parts =
+            time.split(":");
+
+        let hour =
+            parseInt(parts[0]);
+
+        const minute =
+            parts[1];
+
+        const ampm =
+            hour >= 12
+                ? "PM"
+                : "AM";
+
+        if (hour === 0) {
+            hour = 12;
+        }
+
+        else if (hour > 12) {
+            hour -= 12;
+        }
+
+        return hour
+            + ":"
+            + minute
+            + " "
+            + ampm;
+
+    }
+
+
+    /*
+     * ============================================================
+     * CONVERT 12-HOUR TIME TO 24-HOUR TIME
+     * ============================================================
+     */
+
+    function convertTo24Hour(time) {
+
+        if (!time) {
+            return "00:00";
+        }
+
+
+        const parts =
+            time.trim().split(" ");
+
+
+        if (parts.length === 1) {
+            return time;
+        }
+
+
+        const hm =
+            parts[0].split(":");
+
+
+        let hour =
+            parseInt(hm[0]);
+
+
+        const minute =
+            hm[1];
+
+
+        const ampm =
+            parts[1].toUpperCase();
+
+
+        if (ampm === "PM" &&
+            hour !== 12) {
+
+            hour += 12;
+
+        }
+
+
+        if (ampm === "AM" &&
+            hour === 12) {
+
+            hour = 0;
+
+        }
+
+
+        return String(hour).padStart(2, "0")
+            + ":"
+            + minute;
+
+    }
+
+
+    /*
+     * ============================================================
+     * LOAD UPCOMING SESSIONS
+     * ============================================================
+     */
+
+    async function loadSessions() {
+
+        const output =
+            document.getElementById(
+                "sessionsOutput"
+            );
+
+
+        output.innerHTML =
+            "<p class='small'>Loading sessions...</p>";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "api/dashboard?userId="
+                    + encodeURIComponent(userId)
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                output.innerHTML =
+                    "<p class='error'>"
+                    + escapeHtml(
+                        data.error ||
+                        "Unable to load sessions"
+                    )
+                    + "</p>";
+
+                return;
+
+            }
+
+
+            if (!Array.isArray(data) ||
+                data.length === 0) {
+
+                output.innerHTML =
+                    "<p class='empty'>"
+                    + "No upcoming sessions."
+                    + "</p>";
+
+                return;
+
+            }
+
+
+            output.innerHTML = "";
+
+
+            data.forEach(function(session, index) {
+
+                const card =
+                    document.createElement("div");
+
+                card.className =
+                    "session-card";
+
+
+                card.innerHTML =
+
+                    "<div class='session-title'>"
+                    + "🎓 "
+                    + escapeHtml(
+                        session.skillTaught ||
+                        "Skill Exchange Session"
+                    )
+                    + "</div>"
+
+
+                    + "<p>"
+                    + "<strong>Host Campus:</strong> "
+                    + escapeHtml(
+                        session.hostCampus ||
+                        "-"
+                    )
+                    + "</p>"
+
+
+                    + "<p>"
+                    + "<strong>Date:</strong> "
+                    + escapeHtml(
+                        session.date ||
+                        "-"
+                    )
+                    + "</p>"
+
+
+                    + "<p>"
+                    + "<strong>Time:</strong> "
+                    + escapeHtml(
+                        session.time ||
+                        "-"
+                    )
+                    + "</p>"
+
+
+                    + "<p>"
+                    + "<strong>Room:</strong> "
+                    + escapeHtml(
+                        session.room ||
+                        "-"
+                    )
+                    + "</p>"
+
+
+                    + "<p>"
+                    + "<strong>Mentor:</strong> "
+                    + escapeHtml(
+                        session.mentorName ||
+                        "-"
+                    )
+                    + "</p>"
+
+
+                    + "<p>"
+                    + "<strong>Mentor Email:</strong> "
+                    + escapeHtml(
+                        session.mentorEmail ||
+                        "-"
+                    )
+                    + "</p>";
+
+
+                /*
+                 * VIDEO SECTION
+                 */
+
+                if (session.meetingLink) {
+
+                    const videoSection =
+                        document.createElement("div");
+
+                    videoSection.className =
+                        "video-section";
+
+
+                    const videoTitle =
+                        document.createElement("p");
+
+                    videoTitle.innerHTML =
+                        "<strong>🎥 Video Session</strong>";
+
+                    videoSection.appendChild(
+                        videoTitle
+                    );
+
+
+                    const countdown =
+                        document.createElement("p");
+
+                    countdown.className =
+                        "countdown";
+
+
+                    function updateCountdown() {
+
+                        const time24 =
+                            convertTo24Hour(
+                                session.time
+                            );
+
+
+                        const sessionDateTime =
+                            new Date(
+                                session.date
+                                + "T"
+                                + time24
+                                + ":00"
+                            );
+
+
+                        const now =
+                            new Date();
+
+
+                        const difference =
+                            sessionDateTime -
+                            now;
+
+
+                        if (difference <= 0) {
+
+                            countdown.textContent =
+                                "🔴 Session is ready to join!";
+
+                            return;
+
+                        }
+
+
+                        const days =
+                            Math.floor(
+                                difference /
+                                (1000 * 60 * 60 * 24)
+                            );
+
+
+                        const hours =
+                            Math.floor(
+                                (difference %
+                                (1000 * 60 * 60 * 24)) /
+                                (1000 * 60 * 60)
+                            );
+
+
+                        const minutes =
+                            Math.floor(
+                                (difference %
+                                (1000 * 60 * 60)) /
+                                (1000 * 60)
+                            );
+
+
+                        countdown.textContent =
+                            "Starts in: "
+                            + days
+                            + "d "
+                            + hours
+                            + "h "
+                            + minutes
+                            + "m";
+
+                    }
+
+
+                    updateCountdown();
+
+
+                    setInterval(
+                        updateCountdown,
+                        60000
+                    );
+
+
+                    videoSection.appendChild(
+                        countdown
+                    );
+
+
+                    const link =
+                        document.createElement("a");
+
+
+                    link.href =
+                        session.meetingLink;
+
+
+                    link.target =
+                        "_blank";
+
+
+                    link.rel =
+                        "noopener noreferrer";
+
+
+                    link.className =
+                        "video-button";
+
+
+                    link.textContent =
+                        "🎥 Join Video Call";
+
+
+                    videoSection.appendChild(
+                        link
+                    );
+
+
+                    card.appendChild(
+                        videoSection
+                    );
+
+                }
+
+
+                else {
+
+                    const noVideo =
+                        document.createElement("p");
+
+
+                    noVideo.className =
+                        "warning";
+
+
+                    noVideo.textContent =
+                        "Video meeting link is not available.";
+
+
+                    card.appendChild(
+                        noVideo
+                    );
+
+                }
+
+
+                output.appendChild(
+                    card
+                );
+
+            });
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            output.innerHTML =
+                "<p class='error'>"
+                + "Unable to connect to the server."
+                + "</p>";
+
+        }
+
+    }
+
+
+    /*
+     * ============================================================
+     * LOGOUT
+     * ============================================================
+     */
+
+    function logout() {
+
+        localStorage.removeItem(
+            "userId"
+        );
+
+        localStorage.removeItem(
+            "userName"
+        );
+
+        localStorage.removeItem(
+            "userEmail"
+        );
+
+        localStorage.removeItem(
+            "userCampus"
+        );
+
+
+        window.location.href =
+            "index.html";
+
+    }
+
+
+    /*
+     * ============================================================
+     * HTML ESCAPE
+     * ============================================================
+     */
+
+    function escapeHtml(value) {
+
+        if (value === null ||
+            value === undefined) {
+
+            return "";
+
+        }
+
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /*
+     * ============================================================
+     * LOAD SESSIONS ON DASHBOARD OPEN
+     * ============================================================
+     */
+
+    if (userId) {
+
+        loadSessions();
+
+    }
+
+
+</script>
+
+</body>
+
+</html>
